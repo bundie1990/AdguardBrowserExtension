@@ -14,6 +14,7 @@ const ENVS = {
 
 const IS_DEV = BUILD_ENV ? BUILD_ENV === ENVS.DEV : true;
 const OPTIONS_PATH = path.resolve(__dirname, SRC_PATH, 'pages/options');
+const BACKGROUND_PATH = path.resolve(__dirname, SRC_PATH, 'pages/background');
 
 const config = {
     mode: IS_DEV ? 'development' : 'production',
@@ -27,6 +28,7 @@ const config = {
         minimize: false,
     },
     entry: {
+        background: BACKGROUND_PATH,
         options: OPTIONS_PATH,
     },
     output: {
@@ -65,6 +67,11 @@ const config = {
             template: path.join(OPTIONS_PATH, 'index.html'),
             filename: 'options.html',
             chunks: ['options'],
+        }),
+        new HtmlWebpackPlugin({
+            template: path.join(BACKGROUND_PATH, 'index.html'),
+            filename: 'background.html',
+            chunks: ['background'],
         }),
     ],
 };

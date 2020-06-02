@@ -59,9 +59,9 @@ const updateLocalScriptRules = (browser, done) => {
     return done();
 };
 
-const chromium = done => updateLocalScriptRules('chromium', done);
-const edge = done => updateLocalScriptRules('edge', done);
-const firefox = done => updateLocalScriptRules('firefox', done);
-const operaBrowser = done => updateLocalScriptRules('opera', done);
+const chromium = (done) => updateLocalScriptRules('chromium', done);
+const edge = (done) => updateLocalScriptRules('edge', done);
+const firefox = (done) => updateLocalScriptRules('firefox', done);
+const operaBrowser = (done) => updateLocalScriptRules('opera', done);
 
 export default gulp.series(chromium, edge, firefox, operaBrowser);
