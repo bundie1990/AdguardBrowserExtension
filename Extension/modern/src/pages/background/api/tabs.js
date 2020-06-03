@@ -130,8 +130,6 @@ adguard.windowsImpl = (function (adguard) {
  * @type {{onCreated, onRemoved, onUpdated, onActivated, create, remove, activate, reload, sendMessage, getAll, getActive, fromChromeTab}}
  */
 adguard.tabsImpl = (function (adguard) {
-    'use strict';
-
     /**
      * tabId parameter must be integer
      * @param tabId

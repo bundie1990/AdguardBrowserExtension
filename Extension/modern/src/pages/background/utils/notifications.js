@@ -20,8 +20,6 @@
  * @constructor
  */
 adguard.notifications = (function (adguard) {
-    'use strict';
-
     const VIEWED_NOTIFICATIONS = 'viewed-notifications';
     const LAST_NOTIFICATION_TIME = 'viewed-notification-time';
 

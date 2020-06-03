@@ -19,7 +19,7 @@
  *  Initialize Content => BackgroundPage messaging
  */
 (function (adguard) {
-    'use strict';
+    '';
 
     /**
      * Contains event listeners from content pages

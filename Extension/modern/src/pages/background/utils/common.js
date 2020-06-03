@@ -559,7 +559,7 @@ adguard.utils = (function () {
  */
 (function (api) {
     const EventChannels = (function () {
-        'use strict';
+        '';
 
         const EventChannel = function () {
             let listeners = null;
@@ -656,7 +656,7 @@ adguard.utils = (function () {
  * Promises wrapper
  */
 (function (api, global) {
-    'use strict';
+    '';
 
     const defer = global.Deferred;
     const deferAll = function (arr) {
@@ -787,7 +787,7 @@ adguard.utils = (function () {
  * @type {{when, fireUnload}}
  */
 adguard.unload = (function (adguard) {
-    'use strict';
+    '';
 
     const unloadChannel = adguard.utils.channels.newChannel();
 

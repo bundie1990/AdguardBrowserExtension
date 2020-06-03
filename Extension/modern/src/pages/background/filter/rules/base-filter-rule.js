@@ -16,7 +16,7 @@
  */
 
 (function (adguard, api) {
-    'use strict';
+    '';
 
     /**
      * Base class for all filter rules

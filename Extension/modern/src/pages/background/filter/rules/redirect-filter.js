@@ -18,7 +18,7 @@
 /* global Redirects */
 
 (function (adguard, api) {
-    'use strict';
+    '';
 
     let redirects;
 

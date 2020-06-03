@@ -16,7 +16,7 @@
  */
 
 (function (adguard, api) {
-    'use strict';
+    '';
 
     /**
      * Filter that manages JS injection rules.

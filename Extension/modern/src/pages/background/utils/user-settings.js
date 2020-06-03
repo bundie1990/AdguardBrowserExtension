@@ -20,7 +20,7 @@
  * @constructor
  */
 adguard.settings = (function (adguard) {
-    'use strict';
+    '';
 
     const DEFAULT_FILTERS_UPDATE_PERIOD = -1;
     const DEFAULT_FIRST_PARTY_COOKIES_SELF_DESTRUCT_MIN = 4320;

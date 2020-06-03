@@ -43,7 +43,7 @@
  * @type {{filterRequestHeaders, filterResponseHeaders}}
  */
 adguard.cookieFiltering = (function (adguard) {
-    'use strict';
+    '';
 
     /**
      * Cookie with name that matches some URL

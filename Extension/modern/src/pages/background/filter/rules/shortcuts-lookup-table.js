@@ -17,14 +17,14 @@
 
 (function (adguard, api) {
 
-    'use strict';
+    '';
 
     // Constants
     const SHORTCUT_LENGTH = 5;
 
     /**
      * Gets a list of shortcuts that can be used for the lookup table
-     * 
+     *
      * @param {UrlFilterRule} rule basic rule
      * @returns {Array<string>} a list of applicable shortcuts or null if no shortcuts found
      */
@@ -43,7 +43,7 @@
     /**
      * Avoid adding rules that match too many URLs.
      * We'd better use DomainsLookupTable for them.
-     * 
+     *
      * @param {UrlFilterRule} rule rule to check
      */
     function isAnyUrlShortcut(rule) {
@@ -75,7 +75,7 @@
 
     /**
      * djb2 hash algorithm
-     * 
+     *
      * @param {String} str string
      * @param {Number} begin start index
      * @param {Number} end end index
@@ -91,7 +91,7 @@
 
     /**
      * djb2 hash algorithm
-     * 
+     *
      * @param {String} str string
      * @returns {Number} hash value
      */

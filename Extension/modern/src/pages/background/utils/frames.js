@@ -19,7 +19,7 @@
  * Object that contains info about every browser tab.
  */
 adguard.frames = (function (adguard) {
-    'use strict';
+    '';
 
     /**
      * Reloads tab data (checks whitelist and filtering status)

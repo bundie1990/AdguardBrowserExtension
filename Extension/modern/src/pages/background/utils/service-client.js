@@ -17,7 +17,7 @@
 
 /* global FilterDownloader */
 adguard.backend = (function (adguard) {
-    'use strict';
+    '';
 
     /**
      * Class for working with our backend server.

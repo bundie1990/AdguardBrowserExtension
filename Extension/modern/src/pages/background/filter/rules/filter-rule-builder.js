@@ -16,7 +16,7 @@
  */
 
 (function (adguard, api) {
-    'use strict';
+    '';
 
     /**
      * Filters unsupported rules from third-party sources

@@ -18,8 +18,6 @@
 global.browser = window.browser || chrome;
 
 (function (adguard, browser) {
-    'use strict';
-
     adguard.runtime = (function () {
         const onMessage = {
             addListener(callback) {

@@ -28,7 +28,7 @@
  * @type {{getLocalFile, getExternalFile}}
  */
 let FileDownloadWrapper = (() => {
-    'use strict';
+    '';
 
     /**
      * If url protocol is not http or https return true, else false
@@ -161,7 +161,7 @@ if (typeof FileDownloadWrapper === 'undefined') {
 }
 
 const FilterDownloader = (() => {
-    "use strict";
+    "";
 
     const CONDITION_DIRECTIVE_START = "!#if";
     const CONDITION_DIRECTIVE_END = "!#endif";

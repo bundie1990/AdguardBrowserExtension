@@ -1179,7 +1179,7 @@ adguard.antiBannerService = (function (adguard) {
  * Api for filtering and elements hiding.
  */
 adguard.requestFilter = (function (adguard) {
-    'use strict';
+    '';
 
     const { antiBannerService } = adguard;
 
@@ -1428,7 +1428,7 @@ adguard.filtersState = (function (adguard) {
  * Also includes method for initializing
  */
 adguard.filters = (function (adguard) {
-    'use strict';
+    '';
 
     /**
      * TImeout for recently updated filters and again enabled filters - 5 minutes

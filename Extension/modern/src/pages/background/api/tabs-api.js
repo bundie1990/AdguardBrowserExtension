@@ -16,8 +16,6 @@
  */
 
 (function (adguard) {
-    'use strict';
-
     adguard.windowsImpl = adguard.windowsImpl || (function () {
         function noOpFunc() {
             throw new Error('Not implemented');

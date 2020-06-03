@@ -1,5 +1,4 @@
 // TODO fix
-//  remove all 'use strict' comments
 //  make tests working
 //  remove code related to the old edge
 //  remove integration mode

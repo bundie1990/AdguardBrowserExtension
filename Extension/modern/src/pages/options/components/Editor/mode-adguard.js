@@ -1,5 +1,5 @@
 ace.define("ace/mode/css_highlight_rules",[], function(require, exports, module) {
-"use strict";
+"";
 
 var oop = require("../lib/oop");
 var lang = require("../lib/lang");
@@ -194,7 +194,7 @@ exports.CssHighlightRules = CssHighlightRules;
 });
 
 ace.define("ace/mode/doc_comment_highlight_rules",[], function(require, exports, module) {
-"use strict";
+"";
 
 var oop = require("../lib/oop");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -244,7 +244,7 @@ exports.DocCommentHighlightRules = DocCommentHighlightRules;
 });
 
 ace.define("ace/mode/javascript_highlight_rules",[], function(require, exports, module) {
-"use strict";
+"";
 
 var oop = require("../lib/oop");
 var DocCommentHighlightRules = require("./doc_comment_highlight_rules").DocCommentHighlightRules;
@@ -718,7 +718,7 @@ exports.JavaScriptHighlightRules = JavaScriptHighlightRules;
 });
 
 ace.define("ace/mode/csp_highlight_rules",[], function(require, exports, module) {
-    "use strict";
+    "";
 
     var oop = require("../lib/oop");
     var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -751,7 +751,7 @@ ace.define("ace/mode/csp_highlight_rules",[], function(require, exports, module)
 });
 
 ace.define("ace/mode/adguard_highlight_rules",[], function (require, exports, module) {
-  'use strict';
+  '';
 
   var oop = require('../lib/oop');
   var TextHighlightRules = require('./text_highlight_rules').TextHighlightRules;
@@ -974,7 +974,7 @@ ace.define("ace/mode/adguard_highlight_rules",[], function (require, exports, mo
 });
 
 ace.define("ace/mode/folding/cstyle",[], function(require, exports, module) {
-"use strict";
+"";
 
 var oop = require("../../lib/oop");
 var Range = require("../../range").Range;
@@ -1114,7 +1114,7 @@ oop.inherits(FoldMode, BaseFoldMode);
 });
 
 ace.define("ace/mode/adguard",[], function(require, exports, module) {
-"use strict";
+"";
 
 var oop = require("../lib/oop");
 var TextMode = require("./text").Mode;

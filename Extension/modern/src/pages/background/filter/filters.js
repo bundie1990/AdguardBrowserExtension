@@ -16,7 +16,7 @@
  */
 
 (function (adguard) {
-    'use strict';
+    '';
 
     /**
      * Simple request cache
