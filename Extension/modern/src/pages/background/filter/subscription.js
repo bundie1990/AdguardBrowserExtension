@@ -15,7 +15,7 @@
  * along with Adguard Browser Extension.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* global CryptoJS */ // TODO remove when will move to es6 modules
+import CryptoJS from 'crypto-js';
 
 /**
  * Service that loads and parses filters metadata from backend server.

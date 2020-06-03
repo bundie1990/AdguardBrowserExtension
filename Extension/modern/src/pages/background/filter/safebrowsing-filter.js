@@ -21,7 +21,9 @@
  * http://adguard.com/en/how-malware-blocked.html#extension
  */
 
-adguard.safebrowsing = (function (adguard, global) {
+import sha256 from 'crypto-js/sha256';
+
+adguard.safebrowsing = (function (adguard) {
     // Lazy initialized safebrowsing cache
     const safebrowsingCache = {
         get cache() {
@@ -162,7 +164,7 @@ adguard.safebrowsing = (function (adguard, global) {
 
         for (let i = 0; i < hosts.length; i += 1) {
             const host = hosts[i];
-            const hash = global.SHA256.hash(`${host}/`);
+            const hash = sha256(`${host}/`).toString();
             result[hash.toUpperCase()] = host;
         }
 
@@ -305,4 +307,4 @@ adguard.safebrowsing = (function (adguard, global) {
         createHashesMap,
         processSbResponse,
     };
-})(adguard, window);
+})(adguard);

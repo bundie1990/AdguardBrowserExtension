@@ -12,10 +12,6 @@ import './filter/rules/scriptlets/redirects'; // TODO use import/export
 import './filter/rules/scriptlets/scriptlets'; // TODO use import/export
 import './libs/filter-downloader'; // TODO fix import/export issues
 
-// lib/libs/sha256.js
-// lib/libs/crypto-js/core.js
-// lib/libs/crypto-js/md5.js
-
 // Adguard Global and preferences
 import './adguard';
 import './prefs';
