@@ -1,10 +1,11 @@
+/* eslint-disable */
 
 /**
  * AdGuard Scriptlets
  * Version 1.2.1
  */
 
-var Redirects = (function () {
+global.Redirects = (function () {
   function _defineProperty(obj, key, value) {
     if (key in obj) {
       Object.defineProperty(obj, key, {

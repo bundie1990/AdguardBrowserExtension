@@ -6,13 +6,13 @@
 //  remove integration mode
 //  replace third party with modules
 
-// <!--Third party libraries-->
-import './libs/deferred';
-import './filter/rules/scriptlets/scriptlets';
-import './filter/rules/scriptlets/redirects';
+// Third party libraries
+import './libs/deferred'; // TODO replace with async/await
+import './filter/rules/scriptlets/redirects'; // TODO use import/export
+import './filter/rules/scriptlets/scriptlets'; // TODO use import/export
+import './libs/filter-downloader'; // TODO fix import/export issues
+
 // lib/libs/sha256.js
-// lib/utils/punycode.js
-// lib/libs/filter-downloader.js
 // lib/libs/crypto-js/core.js
 // lib/libs/crypto-js/md5.js
 
@@ -111,5 +111,3 @@ import './settings-provider';
 import './startup';
 import './start';
 import './webrequest';
-
-console.log(adguard);

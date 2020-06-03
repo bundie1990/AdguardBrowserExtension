@@ -15,7 +15,9 @@
  * along with Adguard Browser Extension.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-(function (api, global) {
+import punycode from 'punycode';
+
+(function (api) {
     /**
      * Helper methods to work with URLs
      */
@@ -36,7 +38,7 @@
             if (/^[\x00-\x7F]+$/.test(domain)) {
                 return domain;
             }
-            return global.punycode.toASCII(domain);
+            return punycode.toASCII(domain);
         },
 
         isThirdPartyRequest(requestUrl, referrer) {
@@ -298,4 +300,4 @@
     var RESERVED_DOMAINS = api.publicSuffixes;
 
     api.url = UrlUtils;
-})(adguard.utils, window);
+})(adguard.utils);

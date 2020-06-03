@@ -3,6 +3,8 @@
  * Version 1.2.1
  */
 
+global.scriptlets = {};
+
 (function () {
     /**
      * Generate random six symbols id

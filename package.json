@@ -72,7 +72,7 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-svg": "^3.0.0",
     "preprocess": "^3.1.0",
-    "punycode": "^2.1.0",
+    "punycode": "^2.1.1",
     "qunit": "^2.6.0",
     "scriptlets": "https://github.com/AdguardTeam/Scriptlets.git#v1.2.1",
     "style-loader": "^1.1.4",
