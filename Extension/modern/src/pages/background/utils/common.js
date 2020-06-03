@@ -79,7 +79,7 @@ adguard.utils = (function () {
  */
 (function (api) {
     if (!String.prototype.endsWith) {
-        String.prototype.endsWith = function (suffix) { // jshint ignore:line
+        String.prototype.endsWith = function (suffix) {
             const index = this.lastIndexOf(suffix);
             return index !== -1 && index === this.length - suffix.length;
         };
@@ -205,7 +205,7 @@ adguard.utils = (function () {
                 const c = str.charAt(i);
 
                 if (c === delimiter) {
-                    if (i === 0) { // jshint ignore:line
+                    if (i === 0) {
                         // Ignore
                     } else if (str.charAt(i - 1) === escapeCharacter) {
                         sb.splice(sb.length - 1, 1);
@@ -821,7 +821,7 @@ adguard.unload = (function (adguard) {
  * It's bounded with some capacity.
  * Details are stored in some ring buffer. For each key corresponding item are retrieved in LIFO order.
  */
-adguard.utils.RingBuffer = function (size) { // jshint ignore:line
+adguard.utils.RingBuffer = function (size) {
     if (typeof Map === 'undefined') {
         throw new Error('Unable to create RingBuffer');
     }

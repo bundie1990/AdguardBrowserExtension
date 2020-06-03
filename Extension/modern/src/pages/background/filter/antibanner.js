@@ -634,7 +634,7 @@ adguard.antiBannerService = (function (adguard) {
             const promises = [];
 
             // Go through all filters in the map
-            for (let filterId in rulesFilterMap) { // jshint ignore:line
+            for (let filterId in rulesFilterMap) {
                 // To number
                 filterId -= 0;
                 if (filterId !== adguard.utils.filters.USER_FILTER_ID) {
@@ -666,7 +666,7 @@ adguard.antiBannerService = (function (adguard) {
          */
         const fillRequestFilterSync = function () {
             // Go through all filters in the map
-            for (let filterId in rulesFilterMap) { // jshint ignore:line
+            for (let filterId in rulesFilterMap) {
                 // To number
                 filterId -= 0;
                 if (filterId != adguard.utils.filters.USER_FILTER_ID) {

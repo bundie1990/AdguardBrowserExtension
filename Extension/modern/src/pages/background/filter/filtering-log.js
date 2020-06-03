@@ -477,7 +477,7 @@ adguard.filteringLog = (function (adguard) {
             }
             if (typeof callback === 'function') {
                 const syncTabs = [];
-                for (const tabId in tabsInfoMap) { // jshint ignore:line
+                for (const tabId in tabsInfoMap) {
                     syncTabs.push(tabsInfoMap[tabId]);
                 }
                 callback(syncTabs);
@@ -499,7 +499,7 @@ adguard.filteringLog = (function (adguard) {
         openedFilteringLogsPage = Math.max(openedFilteringLogsPage - 1, 0);
         if (openedFilteringLogsPage === 0) {
             // Clear events
-            for (const tabId in tabsInfoMap) { // jshint ignore:line
+            for (const tabId in tabsInfoMap) {
                 const tabInfo = tabsInfoMap[tabId];
                 delete tabInfo.filteringEvents;
             }
