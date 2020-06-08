@@ -45,7 +45,8 @@ class SettingsStore {
     @action
     setAllowAcceptableAds(filters) {
         const { SEARCH_AND_SELF_PROMO_FILTER_ID } = this.constants.AntiBannerFiltersId;
-        const allowAcceptableAdsFilter = filters.find((f) => f.filterId === SEARCH_AND_SELF_PROMO_FILTER_ID);
+        const allowAcceptableAdsFilter = filters
+            .find((f) => f.filterId === SEARCH_AND_SELF_PROMO_FILTER_ID);
         this.allowAcceptableAds = !!(allowAcceptableAdsFilter.enabled);
     }
 

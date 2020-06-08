@@ -213,10 +213,10 @@
         "message": "Protection is paused"
     },
     "popup_site_exception": {
-        "message": "This website is&nbsp;in&nbsp;the exceptions"
+        "message": "This website is in the exceptions"
     },
     "popup_site_exception_info": {
-        "message": "Filtering is&nbsp;disabled because it&nbsp;can interfere with this website's operation."
+        "message": "Filtering is disabled because it can interfere with this website's operation."
     },
     "popup_tab_blocked": {
         "message": "Blocked: $1"
@@ -291,10 +291,10 @@
         "message": "AdGuard for Windows<br>is active"
     },
     "thankyou_want_full_protection": {
-        "message": "Want to&nbsp;try full protection? Download AdGuard for Windows!"
+        "message": "Want to try full protection? Download AdGuard for Windows!"
     },
     "thankyou_want_full_protection_mac": {
-        "message": "Want to&nbsp;try full protection? Download AdGuard for Mac!"
+        "message": "Want to try full protection? Download AdGuard for Mac!"
     },
     "thankyou_compare_full_title": {
         "message": "AdGuard for Windows"
@@ -345,7 +345,7 @@
         "message": "LEARN MORE"
     },
     "popup_block_site_ads": {
-        "message": "Block ads&nbsp;on&nbsp;this website"
+        "message": "Block ads on this website"
     },
     "popup_security_report": {
         "message": "Website security report"
@@ -447,22 +447,22 @@
         "message": "Total"
     },
     "filter_download_title": {
-        "message": "Filters database is&nbsp;loading..."
+        "message": "Filters database is loading..."
     },
     "filter_download_loading": {
-        "message": "Please wait while filters database is&nbsp;loading..."
+        "message": "Please wait while filters database is loading..."
     },
     "filter_download_do_you_know": {
         "message": "Did you know?"
     },
     "filter_download_sb_sites": {
-        "message": "AdGuard phishing and malware database contains<br/>more than 1&nbsp;million websites."
+        "message": "AdGuard phishing and malware database contains<br/>more than 1 million websites."
     },
     "filter_download_rules": {
-        "message": "On&nbsp;average we&nbsp;add more than 100&nbsp;ad filter rules every week."
+        "message": "On average we add more than 100 ad filter rules every week."
     },
     "filter_download_ads_malware": {
-        "message": "90% of malicious software and different viruses are&nbsp;spread<br/>through unscrupulous ad&nbsp;networks."
+        "message": "90% of malicious software and different viruses are spread<br/>through unscrupulous ad networks."
     },
     "filtering_modal_element": {
         "message": "Element:"
@@ -663,7 +663,7 @@
         "message": "Filters update interval"
     },
     "options_too_many_filters_selected": {
-        "message": "You have selected too many filter subscriptions. It&nbsp;may significantly slow down your web browsing."
+        "message": "You have selected too many filter subscriptions. It may significantly slow down your web browsing."
     },
     "options_userfilter_export": {
         "message": "Export"
@@ -681,7 +681,7 @@
         "message": "Unblock ads everywhere <i>except</i> for the websites from the Whitelist"
     },
     "options_userfilter_description": {
-        "message": "You can add your own rules here. This option is&nbsp;recommended for advanced users familiar with HTML/CSS. Read the <a class='spl-user-descr-link' href='https://adguard.com/forward.html?action=userfilter_description&from=options&app=browser_extension' target='_blank'>filter rules tutorial</a> to&nbsp;learn how to&nbsp;write your own filter rules."
+        "message": "You can add your own rules here. This option is recommended for advanced users familiar with HTML/CSS. Read the <a class='spl-user-descr-link' href='https://adguard.com/forward.html?action=userfilter_description&from=options&app=browser_extension' target='_blank'>filter rules tutorial</a> to learn how to write your own filter rules."
     },
     "options_open_changelog": {
         "message": "Changelog"
@@ -714,7 +714,7 @@
         "message": "Miscellaneous"
     },
     "options_show_adguard_full_version": {
-        "message": "Show information on the&nbsp;AdGuard full version"
+        "message": "Show information on the AdGuard full version"
     },
     "options_show_app_updated_notification": {
         "message": "Notify about extension updates"
@@ -723,10 +723,10 @@
         "message": "Filtering log"
     },
     "options_collect_hit_stats": {
-        "message": "Send statistics of ad&nbsp;filters usage"
+        "message": "Send statistics of ad filters usage"
     },
     "options_show_context_menu": {
-        "message": "Add AdGuard item to the&nbsp;browser's context menu"
+        "message": "Add AdGuard item to the browser's context menu"
     },
     "options_use_optimized_filters": {
         "message": "Use optimized filters"
@@ -825,7 +825,7 @@
         "message": "AdGuard for Android"
     },
     "popup_abuse_site": {
-        "message": "Submit a&nbsp;complaint about&nbsp;this website"
+        "message": "Submit a complaint about this website"
     },
     "popup_open_filtering_log": {
         "message": "Open filtering log"

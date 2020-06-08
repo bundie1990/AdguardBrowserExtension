@@ -1,185 +1,181 @@
-import React, { Component, Fragment } from 'react';
+import React, { useContext } from 'react';
+import { observer } from 'mobx-react';
 import SettingsSection from '../Settings/SettingsSection';
 import SettingsSet from '../Settings/SettingsSet';
-import Setting from '../Settings/Setting';
-import messenger from '../../../../services/messenger';
+import Setting, { SETTINGS_TYPES } from '../Settings/Setting';
+import rootStore from '../../stores';
+import log from '../../../../services/log';
+import i18n from '../../../../services/i18n';
 
-const STEALTH_META = {
-    sections: {
-        stealthModeSection: {
-            id: 'stealthModeSection',
-            sets: ['stealthMode'],
-        },
-        cookiesSection: {
-            id: 'cookiesSection',
-            title: 'Cookies',
-            sets: ['thirdPartyCookies', 'firstPartyCookies'],
-        },
-        miscellaneousSection: {
-            id: 'miscellaneousSection',
-            title: 'Miscellaneous',
-            sets: [
-                'hideReferrer',
-                'hideSearchQueries',
-                'sendNotTrack',
-                'removeClientData',
-                'blockWebrtc',
-                'stripTrackingParams',
-            ],
-        },
-    },
-    sets: {
-        stealthMode: {
-            id: 'stealthMode',
-            title: 'Stealth Mode',
-            description: 'Protect your identity and sensitive personal infor…rs by blocking the most popular tracking methods.',
-            settings: ['stealthMode'],
-        },
-        thirdPartyCookies: {
-            id: 'thirdPartyCookies',
-            title: 'Self-destructing third-party cookies',
-            description: 'Limit the lifetime of third-party cookies (minutes)',
-            settings: ['thirdPartyCookies', 'thirdPartyTime'],
-        },
-        firstPartyCookies: {
-            id: 'firstPartyCookies',
-            title: 'Self-destructing first-party cookies (not recommended)',
-            description: 'Limit the lifetime of first-party cookies (minutes)',
-            settings: ['firstPartyCookies', 'firstPartyTime'],
-        },
-        hideReferrer: {
-            id: 'hideReferrer',
-            title: 'Hide Referrer from third-parties',
-            description: 'Prevent third-parties from knowing what website you are visiting',
-            settings: ['hideReferrer'],
-        },
-        hideSearchQueries: {
-            id: 'hideSearchQueries',
-            title: 'Hide your search queries',
-            description: 'Hide the queries for websites visited from a search engine',
-            settings: ['hideSearchQueries'],
-        },
-        sendNotTrack: {
-            id: 'sendNotTrack',
-            title: 'Send Do-Not-Track header',
-            description: 'Prevent websites from tracking you',
-            settings: ['sendNotTrack'],
-        },
-        removeClientData: {
-            id: 'removeClientData',
-            title: 'Remove X-Client-Data header',
-            description: 'Block Google Chrome from sending its version and modifications information to Google domains',
-            settings: ['removeClientData'],
-        },
-        blockWebrtc: {
-            id: 'blockWebrtc',
-            title: 'Block WebRTC',
-            description: 'Prevent a possible disclosure of your real IP address even with proxy or VPN through WebRTC',
-            settings: ['blockWebrtc'],
-        },
-        stripTrackingParams: {
-            id: 'stripTrackingParams',
-            title: 'Remove tracking parameters',
-            description: 'Comma-separated list of tracking parameters which AdGuard will remove from pages addresses.',
-            settings: ['stripTrackingParams'],
-        },
-    },
-    settings: {
-        stealthMode: { id: 'stealthMode', type: 'checkbox' },
-        thirdPartyCookies: { id: 'thirdPartyCookies', type: 'checkbox' },
-        thirdPartyTime: { id: 'thirdPartyTime', type: 'input' },
-        firstPartyCookies: { id: 'firstPartyCookies', type: 'checkbox' },
-        firstPartyTime: { id: 'firstPartyTime', type: 'input' },
-        hideReferrer: { id: 'hideReferrer', type: 'checkbox' },
-        hideSearchQueries: { id: 'hideSearchQueries', type: 'checkbox' },
-        sendNotTrack: { id: 'sendNotTrack', type: 'checkbox' },
-        removeClientData: { id: 'removeClientData', type: 'checkbox' },
-        blockWebrtc: { id: 'blockWebrtc', type: 'checkbox' },
-        stripTrackingParams: { id: 'stripTrackingParams', type: 'checkbox' },
-    },
-};
+const Stealth = observer(() => {
+    const { settingsStore } = useContext(rootStore);
+    const { settings } = settingsStore;
 
-class Stealth extends Component {
-    state = {};
-
-    async componentDidMount() {
-        let settings;
-        const requiredSettingsIds = Object.keys(STEALTH_META.settings);
-
-        try {
-            settings = await messenger.getSettingsByIds(requiredSettingsIds);
-        } catch (e) {
-            console.log(e);
-        }
-        this.setState({ settings });
+    if (!settings) {
+        return null;
     }
 
-    // TODO [maximtop] throttle input
-    handleSettingChange = async ({ id, data }) => {
-        try {
-            await messenger.updateSetting(id, data);
-            console.log(`Settings ${id} was changed to ${data}`);
-        } catch (e) {
-            console.log(e);
-            return;
-        }
-        this.setState((state) => {
-            const { settings } = state;
-            const setting = settings[id];
-            const updatedSetting = { ...setting, value: data };
-            return {
-                ...state,
-                settings: { ...settings, [id]: updatedSetting },
-            };
-        });
+    const settingChangeHandler = async ({ id, data }) => {
+        log.info(`Setting ${id} set to ${data}`);
+        await settingsStore.updateSetting(id, data);
     };
 
-    renderSettings = (settingsIds) => {
-        const settingsData = this.state.settings;
-        const settingsMeta = settingsIds.map(settingId => STEALTH_META.settings[settingId]);
-        const enrichedSettings = settingsMeta.map((settingMeta) => {
-            const settingData = settingsData[settingMeta.id];
-            return { ...settingMeta, ...settingData };
-        });
-        return enrichedSettings.map(setting => (
-            <Setting key={setting.id} setting={setting} handler={this.handleSettingChange} />
-        ));
-    };
+    const {
+        DISABLE_STEALTH_MODE,
+        SELF_DESTRUCT_THIRD_PARTY_COOKIES,
+        SELF_DESTRUCT_THIRD_PARTY_COOKIES_TIME,
+        SELF_DESTRUCT_FIRST_PARTY_COOKIES,
+        SELF_DESTRUCT_FIRST_PARTY_COOKIES_TIME,
+        HIDE_REFERRER,
+        HIDE_SEARCH_QUERIES,
+        SEND_DO_NOT_TRACK,
+        BLOCK_WEBRTC,
+        STRIP_TRACKING_PARAMETERS,
+        TRACKING_PARAMETERS,
+    } = settings.names;
 
-    renderSets = (setsIds) => {
-        const sets = setsIds.map(setId => STEALTH_META.sets[setId]);
-        return sets.map(set => (
-            <SettingsSet key={set.id} {...set}>
-                {this.renderSettings(set.settings)}
-            </SettingsSet>
-        ));
-    };
+    const isStealthModeDisabled = settings.values[DISABLE_STEALTH_MODE];
 
-    renderSections = () => {
-        const sectionsOrder = ['stealthModeSection', 'cookiesSection', 'miscellaneousSection'];
-        return sectionsOrder.map((sectionId) => {
-            const section = STEALTH_META.sections[sectionId];
-            return (
-                <SettingsSection
-                    key={section.id}
-                    title={section.title}
+    return (
+        <>
+            <h2 className="title">{i18n.translate('options_privacy_title')}</h2>
+
+            <SettingsSection>
+                <SettingsSet
+                    title={i18n.translate('options_privacy_title')}
+                    description={i18n.translate('options_privacy_desc')}
+                    disabled={settings.values[DISABLE_STEALTH_MODE]}
                 >
-                    {this.renderSets(section.sets)}
-                </SettingsSection>
-            );
-        });
-    };
+                    <Setting
+                        id={DISABLE_STEALTH_MODE}
+                        type={SETTINGS_TYPES.CHECKBOX}
+                        inverted
+                        value={settings.values[DISABLE_STEALTH_MODE]}
+                        handler={settingChangeHandler}
+                    />
+                </SettingsSet>
+            </SettingsSection>
 
-    render() {
-        const { settings } = this.state;
-        return (
-            <Fragment>
-                <h2 className="title">Stealth Mode</h2>
-                {settings
-                && this.renderSections()}
-            </Fragment>
-        );
-    }
-}
+            <SettingsSection
+                title={i18n.translate('options_cookies_title')}
+                disabled={isStealthModeDisabled}
+            >
+                <SettingsSet
+                    title={i18n.translate('options_third_party_title')}
+                    description={i18n.translate('options_third_party_desc')}
+                    disabled={!settings.values[SELF_DESTRUCT_THIRD_PARTY_COOKIES]}
+                >
+                    <Setting
+                        id={SELF_DESTRUCT_THIRD_PARTY_COOKIES}
+                        type={SETTINGS_TYPES.CHECKBOX}
+                        value={settings.values[SELF_DESTRUCT_THIRD_PARTY_COOKIES]}
+                        handler={settingChangeHandler}
+                    />
+                    <Setting
+                        id={SELF_DESTRUCT_THIRD_PARTY_COOKIES_TIME}
+                        type={SETTINGS_TYPES.INPUT}
+                        value={settings.values[SELF_DESTRUCT_THIRD_PARTY_COOKIES_TIME]}
+                        handler={settingChangeHandler}
+                    />
+                </SettingsSet>
+
+                <SettingsSet
+                    title={i18n.translate('options_first_party_title')}
+                    description={i18n.translate('options_first_party_desc')}
+                    disabled={!settings.values[SELF_DESTRUCT_FIRST_PARTY_COOKIES]}
+                >
+                    <Setting
+                        id={SELF_DESTRUCT_FIRST_PARTY_COOKIES}
+                        type={SETTINGS_TYPES.CHECKBOX}
+                        value={settings.values[SELF_DESTRUCT_FIRST_PARTY_COOKIES]}
+                        handler={settingChangeHandler}
+                    />
+                    <Setting
+                        id={SELF_DESTRUCT_THIRD_PARTY_COOKIES_TIME}
+                        type={SETTINGS_TYPES.INPUT}
+                        value={settings.values[SELF_DESTRUCT_FIRST_PARTY_COOKIES_TIME]}
+                        handler={settingChangeHandler}
+                    />
+                </SettingsSet>
+            </SettingsSection>
+
+            <SettingsSection
+                title={i18n.translate('context_miscellaneous_settings')}
+                disabled={isStealthModeDisabled}
+            >
+                <SettingsSet
+                    title={i18n.translate('options_hide_referrer_title')}
+                    description={i18n.translate('options_hide_referrer_desc')}
+                    disabled={!settings.values[HIDE_REFERRER]}
+                >
+                    <Setting
+                        id={HIDE_REFERRER}
+                        type={SETTINGS_TYPES.CHECKBOX}
+                        value={settings.values[HIDE_REFERRER]}
+                        handler={settingChangeHandler}
+                    />
+                </SettingsSet>
+
+                <SettingsSet
+                    title={i18n.translate('options_hide_search_queries_title')}
+                    description={i18n.translate('options_hide_search_queries_desc')}
+                    disabled={!settings.values[HIDE_SEARCH_QUERIES]}
+                >
+                    <Setting
+                        id={HIDE_SEARCH_QUERIES}
+                        type={SETTINGS_TYPES.CHECKBOX}
+                        value={settings.values[HIDE_SEARCH_QUERIES]}
+                        handler={settingChangeHandler}
+                    />
+                </SettingsSet>
+
+                <SettingsSet
+                    title={i18n.translate('options_send_not_track_title')}
+                    description={i18n.translate('options_send_not_track_desc')}
+                    disabled={!settings.values[SEND_DO_NOT_TRACK]}
+                >
+                    <Setting
+                        id={SEND_DO_NOT_TRACK}
+                        type={SETTINGS_TYPES.CHECKBOX}
+                        value={settings.values[SEND_DO_NOT_TRACK]}
+                        handler={settingChangeHandler}
+                    />
+                </SettingsSet>
+
+                <SettingsSet
+                    title={i18n.translate('options_disable_webrtc_title')}
+                    description={i18n.translate('options_disable_webrtc_desc')}
+                    disabled={!settings.values[BLOCK_WEBRTC]}
+                >
+                    <Setting
+                        id={BLOCK_WEBRTC}
+                        type={SETTINGS_TYPES.CHECKBOX}
+                        value={settings.values[BLOCK_WEBRTC]}
+                        handler={settingChangeHandler}
+                    />
+                </SettingsSet>
+
+                <SettingsSet
+                    title={i18n.translate('options_strip_tracking_params_title')}
+                    description={i18n.translate('options_strip_tracking_params_desc')}
+                    disabled={!settings.values[STRIP_TRACKING_PARAMETERS]}
+                >
+                    <Setting
+                        id={STRIP_TRACKING_PARAMETERS}
+                        type={SETTINGS_TYPES.CHECKBOX}
+                        value={settings.values[STRIP_TRACKING_PARAMETERS]}
+                        handler={settingChangeHandler}
+                    />
+                    <Setting
+                        id={TRACKING_PARAMETERS}
+                        type={SETTINGS_TYPES.TEXTAREA}
+                        value={settings.values[TRACKING_PARAMETERS]}
+                        handler={settingChangeHandler}
+                    />
+                </SettingsSet>
+            </SettingsSection>
+        </>
+    );
+});
 
 export default Stealth;

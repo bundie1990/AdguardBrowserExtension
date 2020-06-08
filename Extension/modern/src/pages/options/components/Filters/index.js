@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import sortBy from 'lodash/sortBy';
 import Group from './Group';
 import Checkbox from '../Settings/Checkbox';
@@ -7,8 +7,10 @@ import EmptyCustom from './EmptyCustom/EmptyCustom';
 import Search from './Search/Search';
 import messenger from '../../../../services/messenger';
 import FiltersUpdate from './FiltersUpdate/FiltersUpdate';
+import log from '../../../../services/log';
 
 class Filters extends Component {
+    // eslint-disable-next-line react/state-in-constructor
     state = {
         searchInput: '',
         searchSelect: 'all',
@@ -25,10 +27,10 @@ class Filters extends Component {
             filtersData = await messenger.getFiltersData();
             filtersInfo = await messenger.getFiltersInfo();
         } catch (e) {
-            console.log(e);
+            log.error(e);
         }
         if (filtersData) {
-            this.setState(state => ({
+            this.setState((state) => ({
                 ...state, ...filtersData, ...filtersInfo,
             }));
         }
@@ -40,11 +42,11 @@ class Filters extends Component {
         try {
             await messenger.updateGroupStatus(id, data);
         } catch (e) {
-            console.log(e);
+            log.error(e);
         }
 
         const group = groups[id];
-        this.setState(state => ({
+        this.setState((state) => ({
             ...state,
             groups: {
                 ...groups,
@@ -56,7 +58,7 @@ class Filters extends Component {
         }));
     };
 
-    groupClickHandler = groupId => (e) => {
+    groupClickHandler = (groupId) => (e) => {
         if (!e.target.closest('.checkbox')) {
             this.setState({ showFiltersByGroup: groupId });
         }
@@ -68,7 +70,7 @@ class Filters extends Component {
             const { enabled, name } = filters[filterId];
             return enabled && name;
         })
-            .filter(name => !!name);
+            .filter((name) => !!name);
     };
 
     renderGroups = (groups) => {
@@ -78,6 +80,7 @@ class Filters extends Component {
             return (
                 <Group
                     key={group.id}
+                    // eslint-disable-next-line react/jsx-props-no-spreading
                     {...group}
                     enabledFilters={enabledFilters}
                     groupClickHandler={this.groupClickHandler(group.id)}
@@ -98,11 +101,11 @@ class Filters extends Component {
         try {
             await messenger.updateFilterStatus(id, data);
         } catch (e) {
-            console.log(e);
+            log.error(e);
         }
 
         const filter = filters[id];
-        this.setState(state => ({
+        this.setState((state) => ({
             ...state,
             filters: {
                 ...filters,
@@ -115,12 +118,12 @@ class Filters extends Component {
     };
 
 
-    renderFilters = filters => Object.values(filters)
+    renderFilters = (filters) => Object.values(filters)
         .sort((filterA, filterB) => filterA.id - filterB.id)
         .map((filter) => {
             const tags = filter.tags
-                .map(tagId => this.state.tags[tagId])
-                .filter(entity => entity);
+                .map((tagId) => this.state.tags[tagId])
+                .filter((entity) => entity);
             return (
                 <Filter key={filter.id} filter={filter} tags={tags}>
                     <Checkbox
@@ -161,8 +164,8 @@ class Filters extends Component {
 
         return filtersValues.map((filter) => {
             const tags = filter.tags
-                .map(tagId => this.state.tags[tagId])
-                .filter(entity => entity);
+                .map((tagId) => this.state.tags[tagId])
+                .filter((entity) => entity);
             let searchMod;
             switch (searchSelect) {
                 case 'enabled':
@@ -195,7 +198,7 @@ class Filters extends Component {
         try {
             await messenger.updateFilters();
         } catch (e) {
-            console.log(e);
+            log.error(e);
             this.setState({ filtersUpdating: false });
             return;
         }
@@ -203,9 +206,12 @@ class Filters extends Component {
         try {
             filtersInfo = await messenger.getFiltersInfo();
         } catch (e) {
-            console.log(e);
+            log.error(e);
         }
-        this.setState({ ...filtersInfo, filtersUpdating: false });
+        this.setState({
+            ...filtersInfo,
+            filtersUpdating: false
+        });
     };
 
     renderSearch() {
@@ -244,11 +250,11 @@ class Filters extends Component {
         if (showFiltersByGroup !== false) {
             const { filters } = this.state;
             const group = groups[showFiltersByGroup];
-            const groupFilters = group.filters.map(filterId => filters[filterId]);
+            const groupFilters = group.filters.map((filterId) => filters[filterId]);
 
             if (group.id === 0 && groupFilters.length === 0) {
                 return (
-                    <Fragment>
+                    <>
                         <div className="title-btn">
                             <button
                                 type="button"
@@ -257,12 +263,12 @@ class Filters extends Component {
                             />
                             <h2 className="title title--back-btn">{group.name}</h2>
                         </div>
-                        <EmptyCustom />
-                    </Fragment>
+                        <EmptyCustom/>
+                    </>
                 );
             }
             return (
-                <Fragment>
+                <>
                     <div className="title-btn">
                         <button
                             type="button"
@@ -277,11 +283,11 @@ class Filters extends Component {
                             ? filters && this.renderFilters(groupFilters)
                             : this.renderSearchResult(groupFilters)
                     }
-                </Fragment>
+                </>
             );
         }
         return (
-            <Fragment>
+            <>
                 <div className="title-btn">
                     {this.renderFiltersUpdate()}
                     <h2 className="title title--filters-up">Filters</h2>
@@ -292,7 +298,7 @@ class Filters extends Component {
                         ? groups && this.renderGroups(groups)
                         : this.renderSearchResult()
                 }
-            </Fragment>
+            </>
         );
     }
 }

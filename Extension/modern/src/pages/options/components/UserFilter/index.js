@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 // import Editor from '../Editor'; TODO fix editor
 
 function UserFilter() {

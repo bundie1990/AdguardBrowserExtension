@@ -27,10 +27,11 @@ function FiltersUpdate(props) {
                     {`Filter rules count: ${rulesCount}`}
                 </div>
                 <div className="filters-update__desc">
-                    { dateObj.toLocaleDateString('default', formatOptions) }
+                    {dateObj.toLocaleDateString('default', formatOptions)}
                 </div>
             </div>
-            <button type="button" className={`button filters-update__btn filters-update__btn--${buttonClass}`} />
+            <button type="button"
+                    className={`button filters-update__btn filters-update__btn--${buttonClass}`}/>
         </button>
     );
 }

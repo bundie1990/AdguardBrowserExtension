@@ -14,6 +14,7 @@ export const Notifications = observer(() => {
         return;
     }
 
+    // eslint-disable-next-line consistent-return
     return (
         <div className="notifications">
             {notifications.map((notification) => {

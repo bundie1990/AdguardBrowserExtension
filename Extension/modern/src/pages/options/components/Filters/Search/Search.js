@@ -12,7 +12,7 @@ export default function Search(props) {
     } = props;
     return (
         <div className="search">
-            <div className="search__ico" />
+            <div className="search__ico"/>
             <input
                 className="search__input"
                 type="text"

@@ -21,7 +21,8 @@ const renderTags = (tags) => {
     const tagsNodes = tags.map((tag) => {
         const tagString = `#${tag.keyword}`;
         return (
-            <div key={tag.id} data-tooltip={tag.description} className="setting__tag">{tagString}</div>
+            <div key={tag.id} data-tooltip={tag.description}
+                 className="setting__tag">{tagString}</div>
         );
     });
     return (

@@ -1,4 +1,5 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import log from '../../../../services/log';
 import SettingsSection from '../Settings/SettingsSection';
 import SettingsSet from '../Settings/SettingsSet';
 import Setting from '../Settings/Setting';
@@ -26,8 +27,6 @@ const WHITELIST_SETTINGS = {
 };
 
 class Whitelist extends Component {
-    state = {};
-
     async componentDidMount() {
         let settings;
         const requiredSettingsIds = Object.keys(WHITELIST_SETTINGS.settings);
@@ -35,7 +34,7 @@ class Whitelist extends Component {
         try {
             settings = await messenger.getSettingsByIds(requiredSettingsIds);
         } catch (e) {
-            console.log(e);
+            log.error(e);
         }
         this.setState({ settings });
     }
@@ -43,9 +42,9 @@ class Whitelist extends Component {
     handleSettingChange = async ({ id, data }) => {
         try {
             await messenger.updateSetting(id, data);
-            console.log(`Settings ${id} was changed to ${data}`);
+            log.info(`Settings ${id} was changed to ${data}`);
         } catch (e) {
-            console.log(e);
+            log.error(e);
             return;
         }
         this.setState((state) => {
@@ -60,6 +59,7 @@ class Whitelist extends Component {
     };
 
     renderSettings = (settingsIds) => {
+        // eslint-disable-next-line react/destructuring-assignment
         const settingsData = this.state.settings;
         const settingsMeta = settingsIds.map((settingId) => WHITELIST_SETTINGS.settings[settingId]);
         const enrichedSettings = settingsMeta.map((settingMeta) => {
@@ -74,6 +74,7 @@ class Whitelist extends Component {
     renderSets = (setsIds) => {
         const sets = setsIds.map((setId) => WHITELIST_SETTINGS.sets[setId]);
         return sets.map((set) => (
+        // eslint-disable-next-line react/jsx-props-no-spreading
             <SettingsSet key={set.id} {...set}>
                 {this.renderSettings(set.settings)}
             </SettingsSet>

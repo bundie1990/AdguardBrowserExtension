@@ -10,3 +10,7 @@ Extension/lib/utils/public-suffixes.js
 Extension/tests/qunit
 Extension/tests/miscellaneous/es6-collections.js
 Extension/tests/request-filter/test_filter.js
+# ToDo: remove the following line in the task AG-2529
+Extension/modern/src/pages/options/components/Editor/
+# ToDo: remove the following line in the task AG-2527
+Extension/modern/src/pages/options/components/Filters/

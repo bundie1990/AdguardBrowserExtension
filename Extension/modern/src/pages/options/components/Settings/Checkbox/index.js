@@ -28,6 +28,7 @@ function Checkbox(props) {
                 id={id}
                 className="checkbox__in"
             />
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label
                 htmlFor={id}
                 className="checkbox__label"

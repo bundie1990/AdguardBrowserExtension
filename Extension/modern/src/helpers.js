@@ -17,10 +17,10 @@ export const uploadFile = (file) => new Promise((resolve, reject) => {
     }
     const reader = new FileReader();
     reader.readAsText(file, 'UTF-8');
-    reader.onload = function (evt) {
+    reader.onload = (evt) => {
         resolve(evt.target.result);
     };
-    reader.onerror = function () {
+    reader.onerror = () => {
         reject(new Error(i18n.translate('options_popup_import_error_file_description')));
     };
 });
